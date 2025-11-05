@@ -164,7 +164,7 @@ class Finviz:
         # Define regex patterns
         suffix_pattern = r"(?<=\d\.\d{2})[MBK]"
         pct_pattern = r"(?<=\d\.\d{2})[%]"
-        date_pattern = r"\d{1,2}/\d{1,2}/\d{4}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{1,2}"
+        date_pattern = r"\d{1,2}/\d{1,2}/\d{4}|^(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{1,2}"
         float_pattern = r"^\d+\.{1}\d+$"
         int_pattern = r"^\d+$"
         non_numeric_pattern = r"[^0-9eE\.\+\-]"
