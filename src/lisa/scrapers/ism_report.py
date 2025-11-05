@@ -352,9 +352,9 @@ class IsmReport:
 
         # For each comment, extract the sector and quote; store in dataframe
         pattern = (
-            r'[\'"‘“‟]'
+            r'[\'"‘“‟]*'
             r"(?P<quote>.+?)"
-            r'[\'"’”]'
+            r'[\'"’”]*'
             r"\s+"
             r"[\[\(]"
             r"(?P<sector>.+?)"
