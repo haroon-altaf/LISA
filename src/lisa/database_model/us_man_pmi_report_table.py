@@ -134,6 +134,24 @@ class US_Man_Pmi_Report(Base):
     mro_lead_time_ninety_days_pct = Column(REAL)
     mro_lead_time_six_months_pct = Column(REAL)
     mro_lead_time_year_plus_pct = Column(REAL)
+    apparel_comments = Column(Text)
+    chemical_comments = Column(Text)
+    computer_electronics_comments = Column(Text)
+    electrical_equipment_comments = Column(Text)
+    fabricated_metal_comments = Column(Text)
+    food_beverage_tobacco_comments = Column(Text)
+    furniture_comments = Column(Text)
+    machinery_comments = Column(Text)
+    miscellaneous_comments = Column(Text)
+    non_metallic_mineral_comments = Column(Text)
+    paper_comments = Column(Text)
+    petroleum_coal_comments = Column(Text)
+    plastic_rubber_comments = Column(Text)
+    metals_comments = Column(Text)
+    printing_comments = Column(Text)
+    textiles_comments = Column(Text)
+    transportation_comments = Column(Text)
+    wood_comments = Column(Text)
 
     @classmethod
     def name(cls):
@@ -273,5 +291,23 @@ class US_Man_Pmi_Report(Base):
                 "mro_lead_time_ninety_days_pct": "mro_lead_time_ninety_days_pct",
                 "mro_lead_time_six_months_pct": "mro_lead_time_six_months_pct",
                 "mro_lead_time_year_plus_pct": "mro_lead_time_year_plus_pct",
+                "Apparel, Leather & Allied Products": "apparel_comments",
+                "Chemical Products": "chemical_comments",
+                "Computer & Electronic Products": "computer_electronics_comments",
+                "Electrical Equipment, Appliances & Components": "electrical_equipment_comments",
+                "Fabricated Metal Products": "fabricated_metal_comments",
+                "Food, Beverage & Tobacco Products": "food_beverage_tobacco_comments",
+                "Furniture & Related Products": "furniture_comments",
+                "Machinery": "machinery_comments",
+                "Miscellaneous Manufacturing": "miscellaneous_comments",
+                "Nonmetallic Mineral Products": "non_metallic_mineral_comments",
+                "Paper Products": "paper_comments",
+                "Petroleum & Coal Products": "petroleum_coal_comments",
+                "Plastics & Rubber Products": "plastic_rubber_comments",
+                "Primary Metals": "metals_comments",
+                "Printing & Related Support Activities": "printing_comments",
+                "Textile Mills": "textiles_comments",
+                "Transportation Equipment": "transportation_comments",
+                "Wood Products": "wood_comments",
             }
         )

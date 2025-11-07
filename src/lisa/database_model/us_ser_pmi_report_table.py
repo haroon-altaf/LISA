@@ -108,6 +108,24 @@ class US_Ser_Pmi_Report(Base):
     inventory_sentiment_too_high_pct = Column(REAL)
     inventory_sentiment_about_right_pct = Column(REAL)
     inventory_sentiment_too_low_pct = Column(REAL)
+    accommodation_food_comments = Column(Text)
+    agriculture_forestry_comments = Column(Text)
+    arts_entertainment_comments = Column(Text)
+    construction_comments = Column(Text)
+    education_comments = Column(Text)
+    finance_insurance_comments = Column(Text)
+    healthcare_comments = Column(Text)
+    information_comments = Column(Text)
+    company_management_comments = Column(Text)
+    mining_comments = Column(Text)
+    other_comments = Column(Text)
+    technical_services_comments = Column(Text)
+    public_admin_comments = Column(Text)
+    real_estate_comments = Column(Text)
+    retail_trade_comments = Column(Text)
+    transportation_warehousing_comments = Column(Text)
+    utilities_comments = Column(Text)
+    wholesale_trade_comments = Column(Text)
 
     @classmethod
     def name(cls):
@@ -221,5 +239,23 @@ class US_Ser_Pmi_Report(Base):
                 "inventory_sentiment_too_high_pct": "inventory_sentiment_too_high_pct",
                 "inventory_sentiment_about_right_pct": "inventory_sentiment_about_right_pct",
                 "inventory_sentiment_too_low_pct": "inventory_sentiment_too_low_pct",
+                "Accommodation & Food Services": "accommodation_food_comments",
+                "Agriculture, Forestry, Fishing & Hunting": "agriculture_forestry_comments",
+                "Arts, Entertainment & Recreation": "arts_entertainment_comments",
+                "Construction": "construction_comments",
+                "Educational Services": "education_comments",
+                "Finance & Insurance": "finance_insurance_comments",
+                "Health Care & Social Assistance": "healthcare_comments",
+                "Information": "information_comments",
+                "Management of Companies & Support Services": "company_management_comments",
+                "Mining": "mining_comments",
+                "Other Services": "other_comments",
+                "Professional, Scientific & Technical Services": "technical_services_comments",
+                "Public Administration": "public_admin_comments",
+                "Real Estate, Rental & Leasing": "real_estate_comments",
+                "Retail Trade": "retail_trade_comments",
+                "Transportation & Warehousing": "transportation_warehousing_comments",
+                "Utilities": "utilities_comments",
+                "Wholesale Trade": "wholesale_trade_comments",
             }
         )
