@@ -131,7 +131,8 @@ class IsmReport:
                 response = session.get(url)
         else:
             base_url = URL_MAN if cls._report_type == "m" else URL_SER
-            prev_month = datetime.now().month - 1
+            curr_month = datetime.now().month
+            prev_month = curr_month - 1 + 12 * (curr_month == 1)
             for i in range(2):
                 month = datetime(1900, prev_month - i, 1).strftime("%B").lower()
                 url = f"{base_url}{month}/"
