@@ -33,7 +33,7 @@ class WebSession:
         max_retries: int = MAX_RETRIES,
         backoff_factor: float = BACKOFF_FACTOR,
         session_renewal_interval: int = SESSION_RENEWAL_INTERVAL,
-        ua_list: tuple[str] = UA_LIST,
+        ua_list: tuple[str, ...] = UA_LIST,
     ) -> None:
         self._timeout = timeout
         self._session_renewal_interval = session_renewal_interval

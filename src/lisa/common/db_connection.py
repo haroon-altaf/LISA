@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import KeysView
 from pathlib import Path
 from typing import Any
 
@@ -103,11 +103,11 @@ class DBConnection:
         return primary_keys, types_dict
 
     @staticmethod
-    def _new_columns(incoming_columns: Iterable, expected_columns: Iterable) -> set[str]:
+    def _new_columns(incoming_columns: KeysView[str], expected_columns: KeysView[str]) -> set[str]:
         return set(incoming_columns) - set(expected_columns)
 
     @staticmethod
-    def _missing_columns(incoming_columns: Iterable, expected_columns: Iterable) -> set[str]:
+    def _missing_columns(incoming_columns: KeysView[str], expected_columns: KeysView[str]) -> set[str]:
         return set(expected_columns) - set(incoming_columns)
 
     @staticmethod

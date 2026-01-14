@@ -50,7 +50,7 @@ class TemplateLogger:
     def __init__(
         self,
         name: str,
-        log_path: str = file_path,
+        log_path: Path = file_path,
         encoding: str = ENCODING,
         rotation_size: int = ROTATION_SIZE,
         rotation_backups: int = ROTATION_BACKUPS,
