@@ -31,9 +31,23 @@ readme = "README.md"
 
 [project.optional-dependencies]
 dev = [
+    "pyright>=1.1.407",
     "ruff>=0.14.0",
     "uv>=0.9.3",
 ]
+
+[tool.pyright]
+include = ["src"]
+typeCheckingMode = "basic"
+reportMissingImports = true
+reportMissingTypeStubs = false
+reportUnusedVariable = true
+# reportUnknownMemberType = true
+reportUnknownMemberType = [
+    { module = "pandas", setting = false },
+    { module = "pandas.core.frame", setting = false }
+]
+pythonVersion = "3.12"
 
 [tool.ruff]
 line-length = 120
