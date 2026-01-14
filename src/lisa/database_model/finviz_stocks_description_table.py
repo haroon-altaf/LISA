@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Text
-from sqlalchemy.orm import declarative_base
 
-Base = declarative_base()
+from .base import Base
 
 
 class Finviz_Stocks_Description(Base):

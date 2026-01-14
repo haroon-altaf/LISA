@@ -1,9 +1,8 @@
 from types import MappingProxyType
 
 from sqlalchemy import REAL, Column, Text
-from sqlalchemy.orm import declarative_base
 
-Base = declarative_base()
+from .base import Base
 
 
 class Bonds(Base):

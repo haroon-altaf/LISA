@@ -1,9 +1,8 @@
 from types import MappingProxyType
 
 from sqlalchemy import Column, Integer
-from sqlalchemy.orm import declarative_base
 
-Base = declarative_base()
+from .base import Base
 
 
 class US_Ser_Industry_Ranking(Base):

@@ -1,9 +1,8 @@
 from types import MappingProxyType
 
 from sqlalchemy import REAL, Column, ForeignKey, Integer
-from sqlalchemy.orm import declarative_base, relationship
 
-Base = declarative_base()
+from .base import Base
 
 
 class Finviz_Industries(Base):
@@ -75,7 +74,3 @@ class Finviz_Industries(Base):
                 "Stocks": "stocks",
             }
         )
-
-
-# Relationships for navigation
-industries = relationship("GICS_Industries")

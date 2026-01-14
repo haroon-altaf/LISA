@@ -1,9 +1,8 @@
 from types import MappingProxyType
 
 from sqlalchemy import REAL, Column, ForeignKey, Integer, Text
-from sqlalchemy.orm import declarative_base, relationship
 
-Base = declarative_base()
+from .base import Base
 
 
 class Finviz_Stocks(Base):
@@ -215,8 +214,3 @@ class Finviz_Stocks(Base):
                 "Change (%)": "change_pct",
             }
         )
-
-
-# Relationships for navigation
-industries = relationship("GICS_Industries")
-sectors = relationship("GICS_Sectors")

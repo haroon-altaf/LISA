@@ -1,7 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, Text
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship
 
-Base = declarative_base()
+from .base import Base
 
 
 class GICS_Industries(Base):
@@ -21,4 +21,4 @@ class GICS_Industries(Base):
 
 
 # Relationships for navigation
-sector = relationship("GICS_Sectors", back_populates="industries")
+gics_sector = relationship("GICS_Sectors", back_populates="gics_industry")

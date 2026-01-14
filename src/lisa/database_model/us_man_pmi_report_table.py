@@ -1,9 +1,8 @@
 from types import MappingProxyType
 
 from sqlalchemy import REAL, Column, Integer, Text
-from sqlalchemy.orm import declarative_base
 
-Base = declarative_base()
+from .base import Base
 
 
 class US_Man_Pmi_Report(Base):
