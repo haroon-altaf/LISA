@@ -15,7 +15,7 @@ See future development plans [here](https://github.com/users/haroon-altaf/projec
 
 
 ## Setup
-**Python version: 3.13.3**
+**Python version >= 3.12**
 
 1. Install uv if missing
    ```cmd
