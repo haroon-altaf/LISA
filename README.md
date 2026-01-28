@@ -4,34 +4,26 @@ A program to extract, transform, store, analyse and visualize various leading ec
 **Motiation for project:** 
 - to learn development best practices and programming design patterns via building something concrete
 - to document my learning journey and demonstrate current level of competence
-
-
+<br></br>
 ## Usage
-See example usage of code in [this notebook](https://github.com/haroon-altaf/lisp/blob/main/notebook.ipynb).
-
-
+Example usage of code in [this notebook](https://github.com/haroon-altaf/lisp/blob/main/notebook.ipynb).
+<br></br>
 ## Next Steps
-See future development plans [here](https://github.com/users/haroon-altaf/projects/2).
-
-
+See next steps [here](https://github.com/users/haroon-altaf/projects/2).
+<br></br>
 ## Setup
 **Python version >= 3.12**
 
-1. Install uv if missing
-   ```cmd
-   pip install uv  
-2. Clone the repository
+1. Clone the repository
    ```cmd
    git clone https://github.com/haroon-altaf/LISA
    cd LISA
-3. Create virtual environment; install dependencies and src files
+2. Create venv; install dependencies
    ```cmd
    uv sync
-4. Run code
-   
+   ```
    To explore code, create new python file or jupyter notebook; alternatively, adapt notebook.ipynb which contains some sample code.
-
-
+<br></br>
 ## Project File Structure
    ```text
    LISA/
