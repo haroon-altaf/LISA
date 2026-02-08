@@ -9,14 +9,14 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from bs4.element import ResultSet, Tag
 
-from lisa.common import DBConnection, TemplateLogger, WebSession
+from lisa.common import DBConnection, PlaywrightSession, TemplateLogger
 from lisa.database_model import US_Man_Industry_Ranking, US_Man_Pmi_Report, US_Ser_Industry_Ranking, US_Ser_Pmi_Report
 
 from .html_dictionary import ISM_MAN_REPORT_STRUCTURE, ISM_SER_REPORT_STRUCTURE
 from .utils import MONTHS, custom_table_to_df, find_content, p_to_str, set_class_prop, set_private_attr
 
-URL_MAN = "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-report-on-business/pmi/"
-URL_SER = "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-report-on-business/services/"
+URL_MAN = "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/"
+URL_SER = "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/services/"
 MAN_SECTORS = (
     "Apparel, Leather & Allied Products",
     "Chemical Products",
@@ -127,8 +127,8 @@ class IsmReport:
             parsed_url = urlparse(url)
             if parsed_url.scheme not in ["http", "https"] or not parsed_url.netloc:
                 raise ValueError("URL is not valid.")
-            with WebSession() as session:
-                response = session.get(url)
+            with PlaywrightSession() as session:
+                headline, html_content = session.get(url)
         else:
             base_url = URL_MAN if cls._report_type == "m" else URL_SER
             curr_month = datetime.now().month
@@ -136,15 +136,14 @@ class IsmReport:
             for i in range(2):
                 month = datetime(1900, prev_month - i, 1).strftime("%B").lower()
                 url = f"{base_url}{month}/"
-                with WebSession() as session:
-                    response = session.get(url)
-                if response:
+                with PlaywrightSession() as session:
+                    headline, html_content = session.get(url)
+                if "PMI" in headline:
                     break
 
-        if not response:
+        if "PMI" not in headline:
             return None
 
-        html_content = response.text
         html_sections = cls._parse_html(html_content)
         sections = cls._transform_sections(html_sections)
         return sections

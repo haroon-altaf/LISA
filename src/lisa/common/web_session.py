@@ -3,6 +3,7 @@ from __future__ import annotations
 import random
 
 import requests
+from playwright.sync_api import Browser, Error, Page, Playwright, sync_playwright
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -86,3 +87,30 @@ class WebSession:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._session.close()
+
+
+class PlaywrightSession:
+    def __init__(self):
+        self._playwright: Playwright = sync_playwright().start()
+        self.browser: Browser = self._playwright.chromium.launch(headless=True)
+        self.page: Page = self.browser.new_page()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        self.page.close()
+        self.browser.close()
+        self._playwright.stop()
+
+    def get(self, url: str):
+        try:
+            self.page.goto(url, wait_until="networkidle")
+            self.page.wait_for_selector("main", timeout=30_000)
+            html = self.page.inner_html("main")
+            headline = self.page.inner_text("h1")
+            return headline, html
+
+        except Error as e:
+            logger.error(f"GET request failed for: {url}\n{e}")
+            return None
