@@ -1,37 +1,25 @@
 ## LISA - Leading Indicators Scraping and Analysis
 A program to extract, transform, store, analyse and visualize various leading economic indicators and stock market data from online sources.
-
+<br></br>
 **Motiation for project:** 
 - to learn development best practices and programming design patterns via building something concrete
 - to document my learning journey and demonstrate current level of competence
-
-
+<br></br>
 ## Usage
 See example usage of code in [this notebook](https://github.com/haroon-altaf/lisp/blob/main/notebook.ipynb).
-
-
-## Next Steps
-See future development plans [here](https://github.com/users/haroon-altaf/projects/2).
-
-
+<br></br>
 ## Setup
 **Python version >= 3.12**
-
-1. Install uv if missing
-   ```cmd
-   pip install uv  
-2. Clone the repository
+<br></br>
+1. Clone the repository
    ```cmd
    git clone https://github.com/haroon-altaf/LISA
    cd LISA
-3. Create virtual environment; install dependencies and src files
+2. Install uv from [here](https://docs.astral.sh/uv/), then run the following to setup venv and install dependencies
    ```cmd
    uv sync
-4. Run code
-   
-   To explore code, create new python file or jupyter notebook; alternatively, adapt notebook.ipynb which contains some sample code.
-
-
+   ```
+<br></br>
 ## Project File Structure
    ```text
    LISA/
