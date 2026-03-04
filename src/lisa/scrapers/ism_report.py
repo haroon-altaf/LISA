@@ -289,19 +289,13 @@ class IsmReport:
 
         def sectors_from_text(text: str) -> tuple[list[str] | None, list[str] | None]:
             try:
-                lines = text.split("\n")[-1].split(". ")
-                grow = lines[0].split(": ")[1].split(";")
-                grow = [item.strip() for item in grow]
-                grow[-1] = grow[-1].replace("and ", "").replace(".", "")
-                contract = lines[1].split(": ")[1].split(";")
-                contract = [item.strip() for item in contract]
-                contract[-1] = contract[-1].replace("and ", "").replace(".", "")
+                performance_line = text.split("\n")[-1]
+                grow_line, contract_line = performance_line.split(". ")
+                pat = "|".join(sectors)
+                grow = re.findall(pat, grow_line)
+                contract = re.findall(pat, contract_line)
             except Exception:
                 logger.exception(f"Error in extracting sectors from text.\n{text}")
-                return [None, None]
-
-            if not set(grow + contract).issubset(sectors):
-                logger.error(f"Unexpected sector names in text.\n{set(grow + contract) - set(sectors)}\n{text}")
                 return [None, None]
 
             return grow, contract
