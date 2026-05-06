@@ -105,7 +105,7 @@ def find_content(html_soup: BeautifulSoup, steps: tuple[bs4_args]) -> Tag | Resu
     return target
 
 
-def p_to_str(html: Tag | ResultSet) -> str:
+def p_to_str(html: Tag | ResultSet) -> str | None:
     """
     Converts a BeautifulSoup Tag or ResultSet object with <p> tags to a string.
     ResultSet elements are joined with newlines; nested <br> tags are translated to newlines; asterisks are removed.
@@ -134,7 +134,7 @@ def p_to_str(html: Tag | ResultSet) -> str:
         return None
 
 
-def custom_table_to_df(table_list: ResultSet) -> list[pd.DataFrame]:
+def custom_table_to_df(table_list: ResultSet) -> list[pd.DataFrame] | None:
     """
     Converts a BeautifulSoup ResultSet object with <Table> tags to a list of Pandas DataFrame objects.
     Asterisks are removed from table axes and numerical values are converted to floats where valid.
