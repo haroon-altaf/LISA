@@ -126,6 +126,7 @@ class Finviz_Stocks(Base):
                 "Market Cap (m USD)": "market_cap_m_usd",
                 "P/E": "p_e",
                 "Fwd P/E": "fwd_p_e",
+                "Forward P/E": "fwd_p_e",
                 "PEG": "peg",
                 "P/S": "p_s",
                 "P/B": "p_b",
