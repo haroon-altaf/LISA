@@ -12,7 +12,7 @@ class bs4_args:
     name: str = ""
     id: str = ""
     string: str = ""
-    class_: str = ""
+    class_: str | None = ""
 
 
 ISM_MAN_REPORT_STRUCTURE = MappingProxyType(
@@ -139,7 +139,8 @@ ISM_MAN_REPORT_STRUCTURE = MappingProxyType(
         "buying_policy_table": (
             bs4_args(method="find", name="h3", id="buyingPolicy"),
             bs4_args(method="find_parent", name="div"),
-            bs4_args(method="find_next_siblings", name="table"),
+            # changed find_next_siblings to find_all_next to handle html variants
+            bs4_args(method="find_all_next", name="table"),
         ),
     }
 )
