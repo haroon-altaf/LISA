@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import random
+import time
 
 import requests
 from playwright.sync_api import Browser, Error, Page, Playwright, sync_playwright
@@ -103,14 +104,18 @@ class PlaywrightSession:
         self.browser.close()
         self._playwright.stop()
 
-    def get(self, url: str):
-        try:
-            self.page.goto(url, wait_until="networkidle")
-            self.page.wait_for_selector("main", timeout=30_000)
-            html = self.page.inner_html("main")
-            headline = self.page.inner_text("h1")
-            return headline, html
+    def get(self, url: str, tries: int = 3) -> tuple[str, str] | None:
+        for i in range(tries):
+            try:
+                self.page.goto(url, wait_until="networkidle")
+                self.page.wait_for_selector("main", timeout=30_000)
+                html = self.page.inner_html("main")
+                headline = self.page.inner_text("h1")
+                return headline, html
 
-        except Error as e:
-            logger.error(f"GET request failed for: {url}\n{e}")
-            return None
+            except Error as e:
+                time.sleep(3)
+                if i == tries - 1:
+                    logger.error(f"GET request failed for: {url}\n{e}")
+
+        return None
