@@ -173,7 +173,9 @@ class Finviz:
         # Detect cols with respective patterns
         suffix_cols = [c for c in df.columns if df[c].str.contains(suffix_pattern, regex=True, na=False).any()]
         pct_cols = [c for c in df.columns if df[c].str.contains(pct_pattern, regex=True, na=False).any()]
-        date_cols = [c for c in df.columns if df[c].str.contains(date_pattern, regex=True, na=False).any()]
+        date_cols = [
+            c for c in df.columns if df[c].str.contains(date_pattern, regex=True, na=False).any() and c != "Company"
+        ]
         float_cols = [c for c in df.columns if df[c].str.contains(float_pattern, regex=True, na=False).any()]
         int_cols = [c for c in df.columns if df[c].str.contains(int_pattern, regex=True, na=False).any()]
 
