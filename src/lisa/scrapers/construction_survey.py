@@ -3,6 +3,7 @@ from __future__ import annotations
 import io
 import warnings
 from functools import reduce
+from typing import Any, cast
 
 import pandas as pd
 
@@ -84,12 +85,15 @@ class ConstructionSurvey:
         if new_cols:
             raise ValueError(f"No column mapping exists for:\n{new_cols}")
 
-        data_rows = df.rename(columns=column_map).to_dict(orient="records")
+        data_rows = cast(
+            list[dict[str, Any]],
+            df.rename(columns=column_map).to_dict(orient="records"),
+        )
         with DBConnection() as conn:
             conn.upsert_rows(table_name=table_name, data_rows=data_rows)
 
     @staticmethod
-    def _process_df(xl: pd.ExcelFile) -> pd.DataFrame:
+    def _process_df(xl: pd.ExcelFile) -> pd.DataFrame | None:
         if "Seasonally Adjusted" not in xl.sheet_names:
             logger.error(f"Required tab not found in Excel file.\n{xl.sheet_names}")
             return None
@@ -103,12 +107,13 @@ class ConstructionSurvey:
 
         try:
             df["Date"] = pd.to_datetime(df["Date"])
+            date_col: pd.Series[pd.Timestamp] = df["Date"]
         except ValueError:
             logger.exception(f"Error processing date column of dataframe.\n{df.head()}")
             return None
 
-        df.insert(0, "Month", df["Date"].dt.month)
-        df.insert(0, "Year", df["Date"].dt.year)
+        df.insert(0, "Month", date_col.dt.month)
+        df.insert(0, "Year", date_col.dt.year)
         df = df.drop(columns=["Date"])
 
         try:

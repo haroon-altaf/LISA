@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from typing import Any, cast
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -49,7 +50,12 @@ class CaixinPmi:
             return None
         data = man_data.merge(ser_data, how="outer", on=["Year", "Month"])
         data = data.astype(
-            {"Year": "Int64", "Month": "Int64", "Manufacturing PMI": "Float64", "Services PMI": "Float64"}
+            {
+                "Year": "Int64",
+                "Month": "Int64",
+                "Manufacturing PMI": "Float64",
+                "Services PMI": "Float64",
+            }
         )
         return cls(data)
 
@@ -69,7 +75,9 @@ class CaixinPmi:
         try:
             texts = [tag.text for tag in tags]
         except AttributeError:
-            logger.exception(f"Failed to extract text from one or more HTML tags.\n{tags}")
+            logger.exception(
+                f"Failed to extract text from one or more HTML tags.\n{tags}"
+            )
             return None
 
         table_data = [cls._parse_text(text) for text in texts]
@@ -91,7 +99,10 @@ class CaixinPmi:
         if new_cols:
             raise ValueError(f"No column mapping exists for:\n{new_cols}")
 
-        data_rows = df.rename(columns=column_map).to_dict(orient="records")
+        data_rows = cast(
+            list[dict[str, Any]],
+            df.rename(columns=column_map).to_dict(orient="records"),
+        )
         with DBConnection() as conn:
             conn.upsert_rows(table_name=table_name, data_rows=data_rows)
 
@@ -110,7 +121,9 @@ class CaixinPmi:
             year = int(year)
             month = MONTHS[month.upper().strip()].value
         except (ValueError, KeyError):
-            logger.exception(f"Unexpected data or data types obtained.\nYear: {year}\nMonth: {month}\nIndex: {index}")
+            logger.exception(
+                f"Unexpected data or data types obtained.\nYear: {year}\nMonth: {month}\nIndex: {index}"
+            )
             return None
 
         return (year, month, index)
