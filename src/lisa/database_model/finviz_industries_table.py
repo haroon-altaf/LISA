@@ -70,6 +70,7 @@ class Finviz_Industries(Base):
                 "Avg Volume (m USD)": "avg_volume_m_usd",
                 "Rel Volume": "rel_volume",
                 "Change (%)": "change_pct",
+                "Change %": "change_pct",
                 "Volume (m USD)": "volume_m_usd",
                 "Stocks": "stocks",
             }

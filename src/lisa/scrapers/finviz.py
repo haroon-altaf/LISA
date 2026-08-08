@@ -17,7 +17,7 @@ from lisa.database_model import (
 )
 
 URL_SCREENER = "https://finviz.com/screener.ashx?v=151&f=ind_stocksonly&o=ticker&c="
-URL_STOCK = "https://finviz.com/quote.ashx"
+URL_STOCK = "https://finviz.com/stock"
 URL_INDUSTRY = "https://finviz.com/groups.ashx?g=industry&v=152&o=name&c="
 
 # fmt: off
@@ -97,8 +97,12 @@ class Finviz:
         if not df_list:
             return None
         df = pd.concat(df_list, ignore_index=True)
+        df.iloc[:, 0] = df.iloc[:, 0].str.slice(
+            1,
+        )  # ticker fix on 08/08/2026
         data = cls._process_df(df)
         data = data.iloc[:num_rows]
+
         return FinvizScreener(data)
 
     @classmethod

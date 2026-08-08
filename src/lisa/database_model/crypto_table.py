@@ -40,5 +40,6 @@ class Crypto(Base):
                 "YoY %": "yoy_pct",
                 "Market Cap (m USD)": "market_cap_m_usd",
                 "Date": "date",
+                "%Chg": "day_pct",
             }
         )

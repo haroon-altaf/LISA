@@ -110,6 +110,7 @@ class TradingEconomics:
             table_name = Crypto_Table.name()
 
         df = self.table
+        df = df.drop(columns=["Chg", "chg"], errors="ignore")
         df_cols = df.columns
 
         new_cols = set(df_cols) - column_map.keys()

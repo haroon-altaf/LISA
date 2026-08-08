@@ -40,5 +40,6 @@ class Commodities(Base):
                 "YTD %": "ytd_pct",
                 "YoY %": "yoy_pct",
                 "Date": "date",
+                "%Chg": "day_pct",
             }
         )

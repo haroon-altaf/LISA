@@ -201,6 +201,7 @@ class Finviz_Stocks(Base):
                 "Shortable": "shortable",
                 "Employees": "employees",
                 "Change from Open (%)": "change_from_open_pct",
+                "Change from Open %": "change_from_open_pct",
                 "Gap (%)": "gap_pct",
                 "Recom": "recom",
                 "Avg Volume (m USD)": "avg_volume_m_usd",
@@ -213,5 +214,6 @@ class Finviz_Stocks(Base):
                 "Low": "low",
                 "Price": "price",
                 "Change (%)": "change_pct",
+                "Change %": "change_pct",
             }
         )
