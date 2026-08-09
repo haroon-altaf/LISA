@@ -5,9 +5,6 @@ A program to extract, transform, store, analyse and visualize various leading ec
 - to learn development best practices and programming design patterns via building something concrete
 - to document my learning journey and demonstrate current level of competence
 <br></br>
-## Usage
-See example usage of code in [this notebook](https://github.com/haroon-altaf/lisp/blob/main/notebook.ipynb).
-<br></br>
 ## Setup
 **Python version >= 3.12**
 <br></br>
@@ -15,7 +12,7 @@ See example usage of code in [this notebook](https://github.com/haroon-altaf/lis
    ```cmd
    git clone https://github.com/haroon-altaf/LISA
    cd LISA
-2. Install uv from [here](https://docs.astral.sh/uv/), then run the following to setup venv and install dependencies
+2. Setup venv and install dependencies
    ```cmd
    uv sync
    ```
@@ -52,10 +49,6 @@ See example usage of code in [this notebook](https://github.com/haroon-altaf/lis
    |       ├─ __init__.py
    |       └─ ...
    |
-   ├─ data/
-   |  └─Leading Indicators and Stocks.db   # SQLite database containing scraped data
-   |
-   ├─ notebook.ipynb                       # Jupyter notebook containing example code 
    ├─ pyproject.toml
    ├─ uv.lock
    ├─ README.md
